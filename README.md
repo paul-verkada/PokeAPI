@@ -17,8 +17,7 @@ List Pokemon API example
 ```swift
 import PokeAPI
 
-PokeAPI.listPokemon() { [weak self] result in
-  guard let self = self else { return }
+PokeAPI.listPokemon() { result in
   switch result {
   case .success(let pokemon):
     print(pokemon)
