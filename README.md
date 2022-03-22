@@ -1,8 +1,22 @@
 # PokeAPI
 API wrapper for the [PokeAPI](https://pokeapi.co/) written in Swift.
 
+## Installation
+### Swift Package Manager
+
+Search for this repository URL in Xcode:
+
+File->Add Packages
+
+```
+https://github.com/paul-verkada/PokeAPI.git
+```
+
+## Examples
 List Pokemon API example
-````
+```swift
+import PokeAPI
+
 PokeAPI.listPokemon() { [weak self] result in
   guard let self = self else { return }
   switch result {
@@ -12,10 +26,12 @@ PokeAPI.listPokemon() { [weak self] result in
     print(error)
   }
 }
-````
+```
 
 ImageDownloader example
-````
+```swift
+import PokeAPI
+
 ImageDownloader.getImage(withURL: url) { result in
   switch result {
   case .success(let image):
@@ -24,4 +40,4 @@ ImageDownloader.getImage(withURL: url) { result in
     print(error)
   }
 }
-````
+```
