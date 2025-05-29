@@ -19,7 +19,7 @@ struct PokemonService {
   static public func listPokemon(limit: Int = 20,
                                  offset: Int? = nil,
                                  completion: @escaping ((Result<[Pokemon], PokemonError>)) -> Void) -> URLSessionDataTask {
-    var urlString = "\(PokemonService.PokemonURL)?limit=\(limit))"
+    var urlString = "\(PokemonService.PokemonURL)?limit=\(limit)"
     if let offset = offset {
       urlString += "&offset=\(offset)"
     }
