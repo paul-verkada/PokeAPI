@@ -19,8 +19,8 @@ import PokeAPI
 
 PokeAPI.listPokemon() { result in
   switch result {
-  case .success(let pokemon):
-    print(pokemon)
+  case .success(let pokemons):
+    print(pokemons)
   case .failure(let error):
     print(error)
   }
