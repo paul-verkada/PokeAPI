@@ -17,13 +17,11 @@ List Pokemon API example
 ```swift
 import PokeAPI
 
-PokeAPI.listPokemon() { result in
-  switch result {
-  case .success(let pokemons):
-    print(pokemons)
-  case .failure(let error):
-    print(error)
-  }
+do {
+  let pokemons = try await PokeAPI.listPokemon()
+  print(pokemons)
+} catch {
+  print(error)
 }
 ```
 
@@ -31,12 +29,10 @@ ImageDownloader example
 ```swift
 import PokeAPI
 
-ImageDownloader.getImage(withURL: url) { result in
-  switch result {
-  case .success(let image):
-    let imageView = UIImageView(image: image)
-  case .failure(let error):
-    print(error)
-  }
+do {
+  let image = try await ImageDownloader.getImage(withURL: url)
+  let imageView = UIImageView(image: image)
+} catch {
+  print(error)
 }
 ```
