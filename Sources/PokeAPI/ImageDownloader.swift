@@ -14,21 +14,18 @@ public enum ImageError: Error {
 }
 
 public struct ImageDownloader {
-  static public func getImage(withURL url: URL,
-                              completion: ((Result<UIImage, ImageError>) -> Void)? = nil) -> URLSessionDataTask {
-    let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-      if let error = error {
-        completion?(.failure(.requestFailed(error)))
+  static public func getImage(withURL url: URL) async throws(ImageError) -> UIImage {
+    do {
+      let (data, _) = try await URLSession.shared.data(from: url)
+      if let image = UIImage(data: data) {
+        return image
       } else {
-        if let data = data,
-           let image = UIImage(data: data) {
-          completion?(.success(image))
-        } else {
-          completion?(.failure(.imageParsingFailed))
-        }
+        throw ImageError.imageParsingFailed
       }
+    } catch let error as ImageError {
+      throw error
+    } catch {
+      throw .requestFailed(error)
     }
-    dataTask.resume()
-    return dataTask
   }
 }

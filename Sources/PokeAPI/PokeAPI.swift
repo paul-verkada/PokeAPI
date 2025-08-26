@@ -2,9 +2,7 @@ public struct PokeAPI {
   public init() {
   }
   
-  static public func listPokemon(limit: Int = 20,
-                                 offset: Int? = nil,
-                                 completion: @escaping ((Result<[Pokemon], PokemonError>)) -> Void) {
-    let _ = PokemonService.listPokemon(limit: limit, offset: offset, completion: completion)
+  static public func listPokemon(limit: Int = 20, offset: Int? = nil) async throws(PokemonError) -> [Pokemon] {
+    try await PokemonService.listPokemon(limit: limit, offset: offset)
   }
 }
