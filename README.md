@@ -25,7 +25,7 @@ do {
 }
 ```
 
-ImageDownloader example
+[Optional] ImageDownloader example
 ```swift
 import PokeAPI
 
